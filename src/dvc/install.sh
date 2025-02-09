@@ -24,3 +24,22 @@ echo "my favorite color is ${FAVORITE}"
 EOF
 
 chmod +x /usr/local/bin/color
+
+
+#!/bin/sh
+set -ue
+
+echo "Activating feature 'dvc'"
+
+export DEBIAN_FRONTEND=noninteractive
+
+cd /etc/apt/sources.list.d
+wget https://dvc.org/deb/dvc.list
+apt-get update
+if [[ "$VERSION" == "latest" ]]; then
+    apt-get install --yes dvc
+else
+    apt-get install --yes dvc="$VERSION"
+fi
+apt-get clean
+rm --recursive --force /var/lib/apt/lists/*

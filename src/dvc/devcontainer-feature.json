@@ -1,0 +1,29 @@
+{
+    "name": "Data Version Control",
+    "id": "dvc-custom",
+    "version": "0.0.1",
+    "description": "A copy of the official dvc feature with some custom options.",
+    "options": {
+        "version": {
+            "type": "string",
+            "default": "latest",
+            "proposals": [
+                "latest",
+                "3.59.0"
+            ],
+            "description": "Version of dvc"
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "Iterative.dvc"
+            ]
+        }
+    },
+    // ToDo: If it works, update to use options with good defaults.
+    "postCreateCommand": "ln -s ${containerWorkspaceFolderBasename}/dvc-config /home/vscode/.config/dvc/config"
+}
